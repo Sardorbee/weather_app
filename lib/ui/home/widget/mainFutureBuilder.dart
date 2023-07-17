@@ -9,9 +9,12 @@ import 'package:weather_app/ui/home/widget/threerows.dart';
 import 'package:weather_app/ui/home/widget/windCont.dart';
 
 class MainFutureBuilder extends StatelessWidget {
-  const MainFutureBuilder({
+  double? lat;
+  double ?lon;
+   MainFutureBuilder({
     super.key,
     required this.formattedDate,
+    required this.lat,required this.lon
   });
 
   final String formattedDate;
@@ -19,7 +22,7 @@ class MainFutureBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: ApiProvider().fetchWeatherData("Toshkent"),
+      future: ApiProvider().fetchWeatherData( lat:  lat.toString(), lon: lon.toString(), units: 'metric'),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());

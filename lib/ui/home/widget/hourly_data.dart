@@ -53,13 +53,17 @@ class HourlyWeatherDataa extends StatelessWidget {
                         parseUnixTimestamp(hour.dt)
                             .toString()
                             .substring(11, 16),
-                        style: TextStyle(fontSize: 12),
+                        style: TextStyle(
+                                        color: Colors.white, fontSize: 12
+                                      ),
                       ),
                       Image.network(
                           "https://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png"),
                       Text(
                         "${hour.temp.toString()}°C",
-                        style: TextStyle(fontSize: 12),
+                        style: TextStyle(
+                                        color: Colors.white, fontSize: 12
+                                      ),
                       ),
                     ],
                   ),

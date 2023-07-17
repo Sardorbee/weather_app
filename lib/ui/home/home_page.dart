@@ -4,7 +4,10 @@ import 'package:weather_app/ui/home/widget/mainFutureBuilder.dart';
 
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  double? lat;
+  double ?lon;
+
+   HomePage({super.key , required this.lat , required this.lon});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -59,7 +62,7 @@ class _HomePageState extends State<HomePage> {
         ),
         child: Column(
           children: [
-            MainFutureBuilder(formattedDate: formattedDate),
+            MainFutureBuilder(formattedDate: formattedDate,lat: widget.lat,lon: widget.lon,),
           ],
         ),
       ),

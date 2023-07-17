@@ -7,10 +7,10 @@ import 'package:weather_app/services/network/models/hourly_model/hourly.dart';
 import 'package:weather_app/utils/constants.dart';
 
 class ApiProvider {
-  Future<WeatherModel> fetchWeatherData(String cityName,
-      {String units = "metric"}) async {
+  Future<WeatherModel> fetchWeatherData(
+      {String units = "metric", required String lat, required String lon}) async {
     final apiUrl = Uri.parse(
-        'https://api.openweathermap.org/data/2.5/weather?appid=$apiKey&q=$cityName&units=$units');
+        'https://api.openweathermap.org/data/2.5/weather?appid=$apiKey&lat=$lat&lon=$lon&units=$units');
     final response = await http.get(apiUrl);
     print(response.statusCode);
 
@@ -26,7 +26,8 @@ class ApiProvider {
   Future<WeatherbyDays> fetchWeatherDataDaily({required double lat,
     required double long,}) async {
     final url = Uri.https(baseUrl, path, {
-      "appid": "139d82d53b7f20c0a44c1bc27377f9ff",
+      "appid": "649ff9f2558d2c45135158b30bc262d8",
+      // "appid": "139d82d53b7f20c0a44c1bc27377f9ff",
       "lat": '41.65',
       "lon": '65.848',
       "exclude": "minutely,current,hourly",
@@ -50,7 +51,8 @@ class ApiProvider {
     required double long,
   }) async {
     final url = Uri.https(baseUrl, path, {
-      "appid": "139d82d53b7f20c0a44c1bc27377f9ff",
+      "appid": "649ff9f2558d2c45135158b30bc262d8",
+      // "appid": "139d82d53b7f20c0a44c1bc27377f9ff",
       "lat": '41.65',
       "lon": '65.848',
       "exclude": "minutely,current,daily",

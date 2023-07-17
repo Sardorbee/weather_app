@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-
+import 'package:location/location.dart';
+import 'package:weather_app/ui/splash/splash_page.dart';
 import 'ui/home/home_page.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: SplashPage(),
     );
   }
 }
