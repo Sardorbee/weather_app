@@ -1,11 +1,13 @@
 
 import 'dart:convert';
 
-import 'package:weather_app/services/network/models/coordinata_model.dart';
-import 'package:weather_app/services/network/models/main_model.dart';
-import 'package:weather_app/services/network/models/sys_model.dart';
-import 'package:weather_app/services/network/models/weather_moodel2.dart';
-import 'package:weather_app/services/network/models/wind_model.dart';
+import 'package:weather_app/services/network/models/current_weather_model/coordinata_model.dart';
+import 'package:weather_app/services/network/models/current_weather_model/main_model.dart';
+import 'package:weather_app/services/network/models/current_weather_model/sys_model.dart';
+import 'package:weather_app/services/network/models/current_weather_model/weather_moodel2.dart';
+import 'package:weather_app/services/network/models/current_weather_model/wind_model.dart';
+
+
 
 WeatherModel weatherModelFromJson(String str) =>
     WeatherModel.fromJson(json.decode(str));
