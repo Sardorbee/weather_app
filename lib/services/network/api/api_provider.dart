@@ -23,9 +23,12 @@ class ApiProvider {
     }
   }
 
-  Future<WeatherbyDays> fetchWeatherDataDaily() async {
+  Future<WeatherbyDays> fetchWeatherDataDaily({required double lat,
+    required double long,}) async {
     final url = Uri.https(baseUrl, path, {
       "appid": "139d82d53b7f20c0a44c1bc27377f9ff",
+      "lat": '41.65',
+      "lon": '65.848',
       "exclude": "minutely,current,hourly",
       "units": "metric",
     });

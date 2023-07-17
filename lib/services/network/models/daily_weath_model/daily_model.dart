@@ -55,7 +55,7 @@ class Daily {
     double windGust;
     List<Weather> weather;
     int clouds;
-    int pop;
+    num pop;
     double rain;
     double uvi;
 
@@ -99,7 +99,7 @@ class Daily {
         weather: List<Weather>.from(json["weather"].map((x) => Weather.fromJson(x))),
         clouds: json["clouds"],
         pop: json["pop"],
-        rain: json["rain"]?.toDouble(),
+        rain: json["rain"]?.toDouble()?? 00.00,
         uvi: json["uvi"]?.toDouble(),
     );
 
