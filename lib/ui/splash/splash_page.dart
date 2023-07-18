@@ -16,16 +16,34 @@ class _SplashPageState extends State<SplashPage> {
   double? lon;
 
   Future<void> retrieveLocation() async {
-    LocationData? currentLocation = await location.getLocation();
+    bool serviceEnabled;
+    PermissionStatus permissionGranted;
+
+    serviceEnabled = await location.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
+      if (!serviceEnabled) {
+        return;
+      }
+    }
+    permissionGranted = await location.hasPermission();
+    if (permissionGranted == PermissionStatus.denied) {
+      permissionGranted = await location.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+
     PermissionStatus permissionStatus = await location.requestPermission();
+    // LocationData? currentLocation = await location.getLocation();
+
     if (permissionStatus == PermissionStatus.granted) {
-      LocationData? locationData = await location.getLocation();
+      LocationData? currentLocation = await location.getLocation();
       setState(() {
-        currentLocation = locationData;
-        lat = currentLocation!.latitude;
-        lon = currentLocation!.longitude;
+        lat = currentLocation.latitude;
+        lon = currentLocation.longitude;
       });
-      Future.delayed(Duration(seconds: 2), () {
+      Future.delayed(const Duration(seconds: 1), () {
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -47,10 +65,21 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: FlutterLogo(
-          size: 150.0, // Customize the size of the logo
-        ),
+      body: Stack(
+        children: [
+          Image.asset(
+            'assets/images/bg.png',
+          ),
+          Image.asset(
+            'assets/images/1.png',
+          ),
+          Center(
+            child: Text(
+              "Weather",
+              style: TextStyle(fontSize: 60, color: Colors.cyan[700]),
+            ),
+          ),
+        ],
       ),
     );
   }
